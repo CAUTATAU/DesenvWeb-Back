@@ -1,6 +1,5 @@
 package com.example.Back_end.Web.User;
 
-import java.util.Date;
 
 public record UserData(String firstName, String lastName, String email, String password, String birthday,String CPF, UserType userType) {
 }
