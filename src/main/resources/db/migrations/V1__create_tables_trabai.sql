@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS  Usuario(
-                         ID_cliente INT AUTO_INCREMENT NOT NULL,
+                         id INT AUTO_INCREMENT NOT NULL,
                          nome VARCHAR(255) NOT NULL,
                          email VARCHAR(255) NOT NULL UNIQUE,
                          senha VARCHAR(255) NOT NULL,
                          data_nascimento DATE NOT NULL,
-                         CPF VARCHAR(11) UNIQUE,
+                         cpf VARCHAR(11) UNIQUE NOT NULL,
                          tipo_usuario ENUM('CLIENTE','ADM') NOT NULL,
-                         PRIMARY KEY (ID_cliente)
+                         PRIMARY KEY (id)
 );
