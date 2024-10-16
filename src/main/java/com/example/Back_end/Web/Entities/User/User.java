@@ -1,14 +1,13 @@
 package com.example.Back_end.Web.Entities.User;
 
 import com.example.Back_end.Web.DTOs.NewUserDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.sql.Date;
 
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,7 +32,7 @@ public class User {
 
 
     @Column(name = "data_nascimento", nullable = false)
-    String dataNascimento;
+    Date dataNascimento;
 
     @Column(name = "CPF")
     String cpf;
