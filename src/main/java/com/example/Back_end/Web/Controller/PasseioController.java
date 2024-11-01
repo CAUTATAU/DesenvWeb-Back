@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class PasseioController {
     @Autowired
     PasseioService passeioService;
-    @Autowired
-    PasseioRepository passeioRepository;
 
     @PostMapping()
     public ResponseEntity<Passeio> createPasseio(@RequestBody CreatePasseioDTO data){
