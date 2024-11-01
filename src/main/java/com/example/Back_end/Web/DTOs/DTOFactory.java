@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 
 public interface DTOFactory {
-    LoginResponseDTO createLoginResponseDTO(String email, Role role);
+    LoginResponseDTO createLoginResponseDTO(String name,String email, Role role);
 }

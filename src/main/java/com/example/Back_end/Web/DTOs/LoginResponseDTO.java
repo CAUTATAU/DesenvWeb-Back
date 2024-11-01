@@ -4,6 +4,7 @@ import com.example.Back_end.Web.Entities.User.Role;
 
 public record LoginResponseDTO (
         String nome,
+        String email,
         Role role
 ){
 }

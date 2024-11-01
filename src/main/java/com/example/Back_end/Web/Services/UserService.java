@@ -33,7 +33,7 @@ public class UserService {
         User userToFind = userRepository.findByEmail(email);
         if(userToFind != null) {
             if(passwordEncoder.matches(password, userToFind.getSenha())) {
-                return dtoFactory.createLoginResponseDTO(userToFind.getEmail(), userToFind.getRole());
+                return dtoFactory.createLoginResponseDTO(userToFind.getNome(),userToFind.getEmail(), userToFind.getRole());
             } else{
                 throw new BadCredentialsException("senha inválida!");
             }
