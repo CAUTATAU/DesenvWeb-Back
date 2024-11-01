@@ -1,7 +1,6 @@
 package com.example.Back_end.Web.DTOs;
 
 import com.example.Back_end.Web.Entities.User.Role;
-import lombok.Setter;
 import java.sql.Date;
 
 

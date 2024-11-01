@@ -2,7 +2,6 @@ package com.example.Back_end.Web.Controller;
 import com.example.Back_end.Web.DTOs.LoginDTO;
 import com.example.Back_end.Web.DTOs.LoginResponseDTO;
 import com.example.Back_end.Web.DTOs.NewUserDTO;
-import com.example.Back_end.Web.Entities.User.User;
 import com.example.Back_end.Web.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
