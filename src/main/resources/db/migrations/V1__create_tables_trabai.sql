@@ -8,3 +8,4 @@ CREATE TABLE IF NOT EXISTS  Usuario(
                          tipo_usuario ENUM('CLIENTE','ADM') NOT NULL,
                          PRIMARY KEY (id)
 );
+
