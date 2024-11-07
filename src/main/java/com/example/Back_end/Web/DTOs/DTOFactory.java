@@ -4,5 +4,5 @@ import com.example.Back_end.Web.Entities.User.Role;
 
 
 public interface DTOFactory {
-    LoginResponseDTO createLoginResponseDTO(String name,String email, Role role);
+    LoginResponseDTO createLoginResponseDTO(String name, String token);
 }

@@ -22,6 +22,8 @@ public class UserService {
     PasswordEncoder passwordEncoder;
     @Autowired
     DTOFactory dtoFactory;
+    @Autowired
+    TokenService tokenService;
 
     public User createUser(NewUserDTO newUserDTO) {
         User newUser = userFactory.createUser(newUserDTO);
@@ -33,11 +35,13 @@ public class UserService {
         User userToFind = userRepository.findByEmail(email);
         if(userToFind != null) {
             if(passwordEncoder.matches(password, userToFind.getSenha())) {
-                return dtoFactory.createLoginResponseDTO(userToFind.getNome(),userToFind.getEmail(), userToFind.getRole());
-            } else{
+                // Gera o token após a validação
+                String token = tokenService.generateToken(userToFind);
+                return dtoFactory.createLoginResponseDTO(userToFind.getNome(),token);
+            } else {
                 throw new BadCredentialsException("senha inválida!");
             }
-        } else{
+        } else {
             throw new BadCredentialsException("email inexistente!");
         }
     }
