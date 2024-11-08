@@ -2,7 +2,6 @@ package com.example.Back_end.Web.Controller;
 
 import com.example.Back_end.Web.DTOs.CreatePasseioDTO;
 import com.example.Back_end.Web.Entities.Passeio.Passeio;
-import com.example.Back_end.Web.Repositories.PasseioRepository;
 import com.example.Back_end.Web.Services.PasseioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

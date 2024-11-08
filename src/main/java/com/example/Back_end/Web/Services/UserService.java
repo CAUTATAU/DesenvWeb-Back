@@ -6,6 +6,7 @@ import com.example.Back_end.Web.DTOs.LoginResponseDTO;
 import com.example.Back_end.Web.DTOs.NewUserDTO;
 import com.example.Back_end.Web.Entities.User.User;
 import com.example.Back_end.Web.Entities.User.UserFactory;
+import com.example.Back_end.Web.Exceptions.DuplicateException;
 import com.example.Back_end.Web.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,7 +26,13 @@ public class UserService {
     @Autowired
     TokenService tokenService;
 
-    public User createUser(NewUserDTO newUserDTO) {
+    public User createUser(NewUserDTO newUserDTO) throws DuplicateException {
+        if(userRepository.findByEmail(newUserDTO.email()) != null) {
+            throw new DuplicateException("email já cadastrado!");
+        }
+        if(userRepository.findByCpf(newUserDTO.cpf()) != null) {
+            throw new DuplicateException("cpf já cadastrado!");
+        }
         User newUser = userFactory.createUser(newUserDTO);
         newUser.setSenha(passwordEncoder.encode(newUser.getSenha()));
         return userRepository.save(newUser);

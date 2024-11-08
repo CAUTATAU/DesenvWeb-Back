@@ -3,12 +3,10 @@ package com.example.Back_end.Web.Configs;
 import com.example.Back_end.Web.Entities.User.User;
 import com.example.Back_end.Web.Repositories.UserRepository;
 import com.example.Back_end.Web.Services.TokenService;
-import com.google.gson.Gson;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,14 +28,17 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = this.recoverToken(request);
-        var login = tokenService.validateToken(token);
 
-        if(login != null){
-            User user = userRepository.findByEmail(login);
-            var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+user.getRole().getAuthority()));
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if(token!=null){
+            String login = tokenService.validateToken(token);
+            if(login != null){
+                User user = userRepository.findByEmail(login);
+                var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+user.getRole().getAuthority()));
+                var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
+
         filterChain.doFilter(request, response);
     }
 
