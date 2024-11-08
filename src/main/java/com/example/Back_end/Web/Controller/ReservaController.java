@@ -28,7 +28,7 @@ public class ReservaController {
 
     //Ação do adm somente
     @GetMapping()
-    public Page<Reserva> getAllReserva(@PageableDefault(size = 10, sort = {"ID_cliente"}) Pageable pageable) {
+    public Page<Reserva> getAllReserva(@PageableDefault(size = 10) Pageable pageable) {
         return reservaService.getReservas(pageable);
     }
     @GetMapping("/{id}")
