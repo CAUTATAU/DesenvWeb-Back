@@ -1,6 +1,7 @@
 package com.example.Back_end.Web.Entities.User;
 
 import com.example.Back_end.Web.DTOs.NewUserDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class User {
     String email;
 
     @Column(name = "senha", nullable = false)
+            @JsonIgnore
     String senha;
 
 
@@ -35,6 +37,7 @@ public class User {
     Date dataNascimento;
 
     @Column(name = "CPF")
+            @JsonIgnore
     String cpf;
 
     @Enumerated(EnumType.STRING)
