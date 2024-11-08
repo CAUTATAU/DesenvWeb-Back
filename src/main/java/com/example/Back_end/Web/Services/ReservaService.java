@@ -13,8 +13,8 @@ public class ReservaService {
     @Autowired
     ReservaRepository reservaRepository;
 
-    public Reserva createReserva(ReservaDTO reservaData) {
-        return reservaRepository.save(new Reserva(reservaData));
+    public Reserva createReserva(Reserva reservaData) {
+        return reservaRepository.save(reservaData);
     }
 
     public Page<Reserva> getReservas(Pageable pageable){

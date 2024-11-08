@@ -2,7 +2,9 @@ package com.example.Back_end.Web.Controller;
 
 import com.example.Back_end.Web.DTOs.ReservaDTO;
 import com.example.Back_end.Web.Entities.Reserva.Reserva;
+import com.example.Back_end.Web.Repositories.UserRepository;
 import com.example.Back_end.Web.Services.ReservaService;
+import com.example.Back_end.Web.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,10 +18,16 @@ public class ReservaController {
 
     @Autowired
     ReservaService reservaService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping()
     public ResponseEntity<String> createReserva(@RequestBody ReservaDTO data) {
-        reservaService.createReserva(data);
+        Reserva reserva = new Reserva(data);
+        reserva.setCliente(userRepository.findById(data.id_cliente()));
+        reservaService.createReserva(reserva);
         return ResponseEntity.ok("Reserva Criada");
     }
 

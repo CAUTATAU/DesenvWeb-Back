@@ -1,10 +1,8 @@
 package com.example.Back_end.Web.Entities.Reserva;
 
 import com.example.Back_end.Web.DTOs.ReservaDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.Back_end.Web.Entities.User.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,14 +20,18 @@ public class Reserva {
     @Id
     Integer ID_reserva;
 
-    Integer ID_cliente;
+    Integer id_cliente;
+
+    @ManyToOne@JoinColumn(name = "ID_Cliente")
+    User cliente;
 
     Date data;
 
+    @Enumerated(EnumType.STRING)
     StatusReserva status;
 
     public Reserva(ReservaDTO data) {
-        this.ID_cliente = data.ID_cliente();
+        this.id_cliente = data.id_cliente();
         this.data = data.data();
         this.status = data.status();
     }
