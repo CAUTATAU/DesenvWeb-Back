@@ -6,7 +6,7 @@ import com.example.Back_end.Web.Entities.User.User;
 import java.util.Date;
 
 public record ReservaDTO(
-        int id_cliente,
+        Integer id_cliente,
         Date data,
         StatusReserva status
 ) {}
