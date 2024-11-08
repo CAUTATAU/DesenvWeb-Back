@@ -22,14 +22,13 @@ public class ReservaService {
 
     public Reserva createReserva(ReservaDTO reservaData) {
         try {
-            Optional<User> cliente = userRepository.findById(reservaData.ID_cliente());
-            if(cliente.isEmpty()) {
-                throw new RuntimeException("Cliente não encontrado");
-            }
-            Reserva reserva = new Reserva(reservaData);
-            reserva.setCliente(cliente.get());
-            return reservaRepository.save(reserva);
-        } catch (Exception e) {
+                User cliente = userRepository.findById(reservaData.id_cliente());
+                Reserva reserva = new Reserva(reservaData);
+                reserva.setCliente(cliente);
+                return reservaRepository.save(reserva);
+
+        }
+        catch (Exception e){
             throw new RuntimeException("Erro ao criar reserva");
         }
 
