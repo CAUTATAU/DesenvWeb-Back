@@ -2,6 +2,7 @@ package com.example.Back_end.Web.Controller;
 
 import com.example.Back_end.Web.DTOs.ReservaDTO;
 import com.example.Back_end.Web.Entities.Reserva.Reserva;
+import com.example.Back_end.Web.Repositories.ReservaRepository;
 import com.example.Back_end.Web.Services.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,8 @@ public class ReservaController {
 
     @Autowired
     ReservaService reservaService;
+    @Autowired
+    ReservaRepository reservaRepository;
 
     @PostMapping()
     public ResponseEntity<String> createReserva(@RequestBody ReservaDTO data) {
@@ -23,8 +26,13 @@ public class ReservaController {
         return ResponseEntity.ok("Reserva Criada");
     }
 
+    //Ação do adm somente
     @GetMapping()
-    public Page<Reserva> getAllReserva(@PageableDefault(size = 10, sort = {"ID_Cliente"}) Pageable pageable) {
+    public Page<Reserva> getAllReserva(@PageableDefault(size = 10, sort = {"ID_cliente"}) Pageable pageable) {
         return reservaService.getReservas(pageable);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Reserva> getReserva(@PathVariable Integer id) {
+        return ResponseEntity.ok(reservaRepository.findById(id).get());
     }
 }
