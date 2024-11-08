@@ -8,7 +8,6 @@ import com.example.Back_end.Web.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,7 +21,8 @@ public class ReservaService {
 
     public Reserva createReserva(ReservaDTO reservaData) {
         try {
-                User cliente = userRepository.findById(reservaData.id_cliente());
+                User cliente = userRepository.findById(reservaData.id_cliente())
+                        .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
                 Reserva reserva = new Reserva(reservaData);
                 reserva.setCliente(cliente);
                 return reservaRepository.save(reserva);

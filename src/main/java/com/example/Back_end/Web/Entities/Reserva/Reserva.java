@@ -2,7 +2,6 @@ package com.example.Back_end.Web.Entities.Reserva;
 
 import com.example.Back_end.Web.DTOs.ReservaDTO;
 import com.example.Back_end.Web.Entities.User.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
