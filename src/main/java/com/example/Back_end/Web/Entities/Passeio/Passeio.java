@@ -48,4 +48,14 @@ public class Passeio {
         this.hora = data.hora();
         this.valor = data.valor();
     }
+
+    public String toString(){
+        return "nome: "+ nome +
+                "\n Lugar: "+ lugar +
+                "\n Descricao: "+ descricao +
+                "\n Data: "+ data +
+                "\n Hora: "+ hora +
+                "\n Valor: "+ valor;
+    };
+
 }
