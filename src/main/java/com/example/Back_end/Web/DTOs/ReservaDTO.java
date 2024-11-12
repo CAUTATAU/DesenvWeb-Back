@@ -7,6 +7,6 @@ import java.util.Date;
 
 public record ReservaDTO(
         Integer id_cliente,
-        Date data,
-        StatusReserva status
+        Integer id_passeio,
+        double valor_total
 ) {}
