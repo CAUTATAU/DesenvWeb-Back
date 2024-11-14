@@ -50,10 +50,10 @@ public class Passeio {
     }
 
     public String toString(){
-        return "nome: "+ nome +
+        return " Nome: "+ nome +
                 "\n Lugar: "+ lugar +
                 "\n Descricao: "+ descricao +
-                "\n Data: "+ data +
+                "\n Dia: "+ data +
                 "\n Hora: "+ hora +
                 "\n Valor: "+ valor;
     };
