@@ -44,7 +44,7 @@ public class ReservaService {
                 String formattedDateTime = localDateTime.format(formatter);
                 reserva.setData(formattedDateTime);
 
-                emailService.sendEmail(cliente.getEmail(), "RESERVA", "reserva criada com sucesso" +
+                emailService.sendEmail(cliente.getEmail(), "RESERVA", "reserva feita com sucesso" +
                         "\n Dia: "+reserva.getData()+
                         "\n"+reserva.getPasseio().toString()+
                         "\n status: "+reserva.getStatus());
@@ -65,10 +65,7 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
         reserva.setStatus(StatusReserva.CONFIRMADO);
 
-        User cliente = userRepository.findById(reserva.getCliente().getId())
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
-        emailService.sendEmail(cliente.getEmail(), "Reserva de passeio",
+        emailService.sendEmail(reserva.getCliente().getEmail(), "Reserva de passeio",
                 "Pagamento Confirmado!" +
                 "\n Dia: "+reserva.getData()+
                 "\n"+reserva.getPasseio().toString()+
@@ -81,10 +78,7 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
         reserva.setStatus(StatusReserva.CANCELADO);
 
-        User cliente = userRepository.findById(reserva.getCliente().getId())
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
-        emailService.sendEmail(cliente.getEmail(), "Reserva de passeio para "+reserva.getPasseio().getLugar(),
+        emailService.sendEmail(reserva.getCliente().getEmail(), "Reserva de passeio para "+reserva.getPasseio().getLugar(),
                 "Reserva Cancelada!");
 
         return reservaRepository.save(reserva);
