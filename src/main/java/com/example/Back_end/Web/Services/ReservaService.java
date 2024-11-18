@@ -65,7 +65,9 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
         reserva.setStatus(StatusReserva.CONFIRMADO);
 
-        emailService.sendEmail(reserva.getCliente().getEmail(), "Reserva de passeio",
+        User cliente = reserva.getCliente();
+
+        emailService.sendEmail(cliente.getEmail(), "Reserva de passeio",
                 "Pagamento Confirmado!" +
                 "\n Dia: "+reserva.getData()+
                 "\n"+reserva.getPasseio().toString()+
@@ -78,7 +80,9 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
         reserva.setStatus(StatusReserva.CANCELADO);
 
-        emailService.sendEmail(reserva.getCliente().getEmail(), "Reserva de passeio para "+reserva.getPasseio().getLugar(),
+        User cliente = reserva.getCliente();
+
+        emailService.sendEmail(cliente.getEmail(), "Reserva de passeio para "+reserva.getPasseio().getLugar(),
                 "Reserva Cancelada!");
 
         return reservaRepository.save(reserva);
