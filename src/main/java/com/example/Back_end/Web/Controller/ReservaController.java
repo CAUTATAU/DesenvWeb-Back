@@ -37,4 +37,15 @@ public class ReservaController {
     public ResponseEntity<Reserva> getReserva(@PathVariable Integer id) {
         return ResponseEntity.ok(reservaRepository.findById(id).get());
     }
+
+    @PutMapping("/confirmar/{id}")
+    public ResponseEntity<Reserva> confirmarReserva(@PathVariable Integer id) {
+        return ResponseEntity.ok(reservaService.confirmarReserva(id));
+    }
+
+    //Ação do adm somente
+    @PutMapping("/cancelar/{id}")
+    public ResponseEntity<Reserva> cancelarReserva(@PathVariable Integer id) {
+        return ResponseEntity.ok(reservaService.cancelarReserva(id));
+    }
 }
