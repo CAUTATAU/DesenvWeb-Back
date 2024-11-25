@@ -44,7 +44,7 @@ public class UserService {
             if(passwordEncoder.matches(password, userToFind.getSenha())) {
                 // Gera o token após a validação
                 String token = tokenService.generateToken(userToFind);
-                return dtoFactory.createLoginResponseDTO(userToFind.getNome(),token);
+                return dtoFactory.createLoginResponseDTO(userToFind.getNome(),userToFind.getRole(),token);
             } else {
                 throw new BadCredentialsException("senha inválida!");
             }
