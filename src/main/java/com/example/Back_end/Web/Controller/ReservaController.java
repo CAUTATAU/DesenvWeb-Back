@@ -25,9 +25,9 @@ public class ReservaController {
 
 
     @PostMapping()
-    public ResponseEntity<String> createReserva(@RequestBody ReservaDTO data) {
-        reservaService.createReserva(data);
-        return ResponseEntity.ok("Reserva Criada");
+    public ResponseEntity<Reserva> createReserva(@RequestBody ReservaDTO data) {
+        Reserva reserva = reservaService.createReserva(data);
+        return ResponseEntity.ok(reserva);
     }
 
     //Ação do adm somente
