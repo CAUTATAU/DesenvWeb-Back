@@ -12,6 +12,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reserva")
 public class ReservaController {
@@ -47,5 +49,9 @@ public class ReservaController {
     @PutMapping("/cancelar/{id}")
     public ResponseEntity<Reserva> cancelarReserva(@PathVariable Integer id) {
         return ResponseEntity.ok(reservaService.cancelarReserva(id));
+    }
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<List<Reserva>> floki(@PathVariable int id) {
+        return ResponseEntity.ok(reservaRepository.findByIdCliente(id));
     }
 }
