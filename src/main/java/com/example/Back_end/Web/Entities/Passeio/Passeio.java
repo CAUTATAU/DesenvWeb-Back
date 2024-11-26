@@ -1,6 +1,5 @@
 package com.example.Back_end.Web.Entities.Passeio;
 
-
 import com.example.Back_end.Web.DTOs.CreatePasseioDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class Passeio {
     String descricao;
 
     @Column(name="data", nullable = false)
-    Date data;
+    LocalDate data;
 
     @Column(name="hora", nullable = false)
     Time hora;
@@ -45,17 +45,7 @@ public class Passeio {
         this.descricao = data.descricao();
         this.lugar = data.lugar();
         this.data = data.data();
-        this.hora = data.hora();
+        this.hora = Time.valueOf(LocalTime.parse(data.hora()));
         this.valor = data.valor();
     }
-
-    public String toString(){
-        return " Nome: "+ nome +
-                "\n Lugar: "+ lugar +
-                "\n Descricao: "+ descricao +
-                "\n Dia: "+ data +
-                "\n Hora: "+ hora +
-                "\n Valor: "+ valor;
-    };
-
 }

@@ -32,4 +32,5 @@ public class PasseioController {
         Passeio passeio = passeioService.getPasseio(id);
         return ResponseEntity.ok(passeio);
     }
+
 }
