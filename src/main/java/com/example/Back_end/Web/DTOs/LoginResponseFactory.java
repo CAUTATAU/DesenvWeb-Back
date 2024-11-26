@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginResponseFactory implements DTOFactory{
     @Override
-    public LoginResponseDTO createLoginResponseDTO(String name, Role role, String token){
-        return new LoginResponseDTO(name,role,token);
+    public LoginResponseDTO createLoginResponseDTO(int id,String name, Role role, String token){
+        return new LoginResponseDTO(id,name,role,token);
     }
 }
