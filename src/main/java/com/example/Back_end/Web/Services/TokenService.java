@@ -20,6 +20,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("Back-end-Web")
                     .withSubject(user.getEmail())
+                    .withClaim("id", user.getId())
                     .withClaim("role",user.getRole().getAuthority())
                     .withClaim("name",user.getNome())
                     .withClaim("cpf",user.getCpf())
